@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "buildDate": "2025-08-01T09:04:57.199Z",
+  "environment": "development",
+  "railway": {
+    "isRailway": false,
+    "serviceName": "local",
+    "publicUrl": "http://localhost:3000"
+  },
+  "git": {
+    "commitHash": "68ba40c812e34b5e6b583f8f9b301896156018bf",
+    "commitDate": "Fri Aug 1 03:55:02 2025 -0500",
+    "branch": "main"
+  }
+}

@@ -9,7 +9,7 @@
     "prepare-db": "node scripts/prepare-db.js",
     "build-info": "node scripts/generate-build-info.js",
     "check-env": "node scripts/check-env.js",
-    "railway": "npm run check-env && npm run build-info && npm run prepare-db && npm start",
+    "railway": "npm run check-env && npm run build-info && (npm run prepare-db || echo 'Database preparation failed, continuing...') && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

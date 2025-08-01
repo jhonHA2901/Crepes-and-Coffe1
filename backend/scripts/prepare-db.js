@@ -9,14 +9,42 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 // Configuración de la base de datos
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  multipleStatements: true
-};
+const isRailway = process.env.RAILWAY_SERVICE_NAME !== undefined;
+
+let dbConfig;
+
+if (isRailway && process.env.MYSQL_URL) {
+  console.log('📊 Usando MYSQL_URL para la conexión a la base de datos en prepare-db');
+  const url = new URL(process.env.MYSQL_URL);
+  dbConfig = {
+    host: url.hostname,
+    user: url.username,
+    password: url.password,
+    database: url.pathname.slice(1),
+    port: url.port,
+    multipleStatements: true
+  };
+} else if (isRailway) {
+  console.log('📊 Usando variables individuales de MySQL proporcionadas por Railway en prepare-db');
+  dbConfig = {
+    host: process.env.MYSQLHOST || process.env.DB_HOST,
+    user: process.env.MYSQLUSER || process.env.DB_USER,
+    password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
+    database: process.env.MYSQLDATABASE || process.env.DB_NAME,
+    port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
+    multipleStatements: true
+  };
+} else {
+  console.log('📊 Usando configuración de base de datos local en prepare-db');
+  dbConfig = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
+    multipleStatements: true
+  };
+}
 
 // Función para ejecutar el script SQL
 async function executeSqlScript() {
@@ -67,8 +95,14 @@ async function executeSqlScript() {
     console.log('✅ Script SQL ejecutado correctamente.');
     
   } catch (error) {
-    console.error('❌ Error al ejecutar el script SQL:', error);
-    process.exit(1);
+    console.error('❌ Error al ejecutar el script SQL en prepare-db.js:', error.message);
+    // En Railway, no queremos que un fallo aquí detenga todo el despliegue.
+    if (isRailway) {
+      console.warn('⚠️  El script de preparación de la base de datos falló, pero se continuará con el despliegue.');
+      process.exit(0);
+    } else {
+      process.exit(1);
+    }
   } finally {
     if (connection) {
       await connection.end();
