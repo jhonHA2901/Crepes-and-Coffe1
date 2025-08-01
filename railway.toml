@@ -1,0 +1,32 @@
+[build]
+  builder = "nixpacks"
+  buildCommand = "cd backend && npm install"
+
+[deploy]
+  startCommand = "cd backend && npm run railway"
+  healthcheckPath = "/health"
+  healthcheckTimeout = 300
+  restartPolicyType = "on-failure"
+  restartPolicyMaxRetries = 10
+
+[[services]]
+  name = "backend"
+  internal_port = 3000
+  auto_deploy = true
+
+[[services.ports]]
+  port = 80
+  handlers = ["http"]
+  force_https = true
+
+[[services.ports]]
+  port = 443
+  handlers = ["tls", "http"]
+
+[[services.http_checks]]
+  interval = 10000
+  grace_period = 5000
+  method = "get"
+  path = "/health"
+  protocol = "http"
+  timeout = 2000

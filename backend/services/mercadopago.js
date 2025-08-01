@@ -45,7 +45,7 @@ const createPaymentPreference = async (orderData, items, payer) => {
         pending: `${process.env.FRONTEND_URL}/pago/pendiente`
       },
       auto_return: 'approved',
-      notification_url: `${process.env.BACKEND_URL || 'https://your-backend-url.railway.app'}/pago/webhook`,
+      notification_url: `${process.env.BACKEND_URL || process.env.RAILWAY_PUBLIC_URL || 'https://your-backend-url.railway.app'}/pago/webhook`,
       external_reference: orderData.id.toString(),
       expires: true,
       expiration_date_from: new Date().toISOString(),

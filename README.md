@@ -128,3 +128,13 @@ Ejecutar el script `database/schema.sql` para crear las tablas necesarias.
 
 ## 🚀 Despliegue
 El proyecto está configurado para desplegarse en Railway con MySQL.
+
+### Despliegue en Railway
+
+Para desplegar el proyecto en Railway, sigue las instrucciones detalladas en el archivo [README-RAILWAY.md](./README-RAILWAY.md).
+
+El proyecto incluye:
+- `Procfile`: Define el comando para iniciar la aplicación
+- `railway.toml`: Configuración específica para Railway
+- `.env.railway`: Plantilla para las variables de entorno en Railway
+- Script de preparación de la base de datos

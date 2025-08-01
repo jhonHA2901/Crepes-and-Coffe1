@@ -3,9 +3,16 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 require('dotenv').config();
 
-const { sequelize } = require('./config/database');
+// Detectar si estamos en Railway
+const isRailway = process.env.RAILWAY_SERVICE_NAME !== undefined;
+
+// Usar la configuración de base de datos adecuada
+const { sequelize } = isRailway 
+  ? require('./config/railway-database')
+  : require('./config/database');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/productos');
 const orderRoutes = require('./routes/pedidos');
@@ -35,13 +42,20 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Servir archivos estáticos
+app.use(express.static('public'));
+
 // CORS configuration
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://192.168.2.42:3001',
     process.env.ADMIN_URL || 'http://192.168.2.42:3002',
-    'https://www.mercadopago.com'
-  ],
+    'https://www.mercadopago.com',
+    // Permitir solicitudes desde Railway en desarrollo
+    process.env.RAILWAY_PUBLIC_URL,
+    // Permitir solicitudes desde cualquier origen en desarrollo
+    process.env.NODE_ENV === 'development' ? '*' : null
+  ].filter(Boolean), // Filtrar valores nulos o undefined
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -54,6 +68,11 @@ app.get('/health', (req, res) => {
     message: 'Crepes and Coffee API is running',
     timestamp: new Date().toISOString()
   });
+});
+
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Routes
@@ -110,7 +129,12 @@ const startServer = async () => {
     
     // Start server
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en puerto ${PORT}`);      console.log(`🌐 Health check: http://192.168.2.42:${PORT}/health`);      console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
+      const healthCheckUrl = process.env.RAILWAY_PUBLIC_URL 
+        ? `${process.env.RAILWAY_PUBLIC_URL}/health`
+        : `http://192.168.2.42:${PORT}/health`;
+      console.log(`🌐 Health check: ${healthCheckUrl}`);
+      console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
     });
     
   } catch (error) {
