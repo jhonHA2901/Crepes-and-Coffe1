@@ -1,5 +1,6 @@
 [phases.setup]
 nixPkgs = ["nodejs", "mysql"]
+aptPkgs = ["mysql-client"]
 
 [variables]
 NODE_VERSION = "18"
@@ -13,6 +14,3 @@ cmds = ["cd backend && npm run build-info"]
 [start]
 cmd = "cd backend && npm run railway"
 watchPatterns = ["backend/**/*"]
-
-[phases.setup.aptPkgs]
-packages = ["mysql-client"]
