@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs"]
+
+[variables]
+NODE_VERSION = "18"
+
+[phases.install]
+cmds = ["cd backend && npm install"]
+
+[phases.build]
+cmds = ["cd backend && npm run build-info"]
+
+[start]
+cmd = "cd backend && npm run railway"
