@@ -1,0 +1,366 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuentes personalizadas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Variables CSS */
+:root {
+  --primary-color: #8B4513;
+  --primary-dark: #6B3410;
+  --primary-light: #A0522D;
+  --secondary-color: #D2691E;
+  --accent-color: #F4A460;
+  --success-color: #10B981;
+  --error-color: #EF4444;
+  --warning-color: #F59E0B;
+  --info-color: #3B82F6;
+}
+
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Componentes personalizados */
+@layer components {
+  /* Botones */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply bg-amber-700 text-white hover:bg-amber-800 focus:ring-amber-500 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500;
+  }
+  
+  .btn-success {
+    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white focus:ring-amber-500;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+  
+  /* Inputs */
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .input-error {
+    @apply border-red-500 focus:ring-red-500;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden;
+  }
+  
+  .card-body {
+    @apply p-6;
+  }
+  
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-4 border-gray-200 border-t-amber-700;
+  }
+  
+  /* Gradientes */
+  .gradient-primary {
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+  }
+  
+  .gradient-secondary {
+    background: linear-gradient(135deg, #F4A460 0%, #DEB887 100%);
+  }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Estilos para toast notifications */
+.toast-custom {
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Estilos para el carrito flotante */
+.cart-badge {
+  @apply absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold;
+}
+
+/* Estilos para productos */
+.product-card {
+  @apply card hover:scale-105 transform transition-all duration-300;
+}
+
+.product-image {
+  @apply w-full h-48 object-cover;
+}
+
+/* Estilos para el checkout */
+.checkout-step {
+  @apply flex items-center space-x-3 p-4 rounded-lg border-2 transition-all duration-200;
+}
+
+.checkout-step.active {
+  @apply border-amber-500 bg-amber-50;
+}
+
+.checkout-step.completed {
+  @apply border-green-500 bg-green-50;
+}
+
+/* Estilos para formularios */
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+.form-error {
+  @apply text-red-600 text-sm mt-1;
+}
+
+/* Estilos para tablas */
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply bg-gray-50 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200;
+}
+
+.table td {
+  @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900 border-b border-gray-200;
+}
+
+.table tbody tr:hover {
+  @apply bg-gray-50;
+}
+
+/* Estilos para modales */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-xl shadow-xl max-w-md w-full mx-4 max-h-screen overflow-y-auto;
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .btn {
+    @apply text-sm px-3 py-2;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+}
+
+/* Estilos para estados de carga */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.skeleton-text {
+  @apply h-4 bg-gray-200 rounded animate-pulse;
+}
+
+.skeleton-avatar {
+  @apply h-10 w-10 bg-gray-200 rounded-full animate-pulse;
+}
+
+/* Estilos para elementos interactivos */
+.interactive {
+  @apply cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+/* Estilos para el hero section */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.9) 0%, rgba(210, 105, 30, 0.9) 100%);
+}
+
+/* Estilos para efectos de hover en imágenes */
+.image-hover {
+  @apply transition-transform duration-300 hover:scale-110;
+}
+
+/* Estilos para separadores */
+.divider {
+  @apply border-t border-gray-200 my-6;
+}
+
+/* Estilos para elementos destacados */
+.highlight {
+  @apply bg-yellow-100 px-2 py-1 rounded;
+}
+
+/* Estilos para elementos de navegación */
+.nav-link {
+  @apply text-gray-700 hover:text-amber-700 transition-colors duration-200 font-medium;
+}
+
+.nav-link.active {
+  @apply text-amber-700 font-semibold;
+}

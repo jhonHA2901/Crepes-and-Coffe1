@@ -1,0 +1,39 @@
+{
+  "name": "crepes-coffee-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Crepes and Coffee e-commerce",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecommerce",
+    "crepes",
+    "coffee",
+    "api",
+    "express"
+  ],
+  "author": "Crepes and Coffee Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "mysql2": "^3.6.0",
+    "sequelize": "^6.32.1",
+    "firebase-admin": "^11.10.1",
+    "mercadopago": "^1.5.17",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
