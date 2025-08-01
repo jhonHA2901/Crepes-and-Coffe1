@@ -62,7 +62,28 @@ Puedes crear tablas directamente desde la interfaz de Railway:
 4. Haz clic en "Add column" para agregar más columnas si es necesario
 5. Finalmente, haz clic en "Create" para crear la tabla
 
-![Creación de tablas en MySQL Railway](./imagenes/mysql-railway-create-table.png)
+![Creación de tablas en MySQL Railway](./imagenes/railway/mysql-railway-create-table.png)
+
+#### Tipos de datos comunes en MySQL
+
+Al crear tablas, puedes utilizar los siguientes tipos de datos:
+
+- **VARCHAR(n)**: Para cadenas de texto de longitud variable (máximo n caracteres)
+- **TEXT**: Para textos largos
+- **INT**: Para números enteros
+- **DECIMAL(p,s)**: Para números decimales (p dígitos en total, s decimales)
+- **DATE**: Para fechas (YYYY-MM-DD)
+- **DATETIME**: Para fechas con hora (YYYY-MM-DD HH:MM:SS)
+- **BOOLEAN**: Para valores verdadero/falso
+- **SERIAL**: Para columnas auto-incrementales (útil para IDs)
+
+#### Restricciones comunes
+
+- **Primary Key**: Identifica de manera única cada registro en la tabla
+- **Foreign Key**: Establece relaciones entre tablas
+- **Unique**: Asegura que todos los valores en la columna sean únicos
+- **Not Null**: Asegura que la columna no pueda tener valores NULL
+- **Default**: Establece un valor predeterminado
 
 ## Solución de problemas
 
