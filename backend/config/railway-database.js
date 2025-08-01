@@ -46,7 +46,7 @@ if (isRailway) {
       dialect: 'mysql',
       host: process.env.MYSQLHOST || process.env.DB_HOST,
       port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
-      username: process.env.MYSQLUSER || process.env.DB_USER,
+      username: process.env.MYSQLUSER || process.env.DB_USER || 'root',
       password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
       database: process.env.MYSQLDATABASE || process.env.DB_NAME || 'crepes_and_coffee',
       logging: process.env.NODE_ENV === 'development' ? console.log : false,
