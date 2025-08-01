@@ -7,9 +7,9 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 // Configuración de Firebase
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY || 'mock-api-key',
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || 'crepes-and-coffee.firebaseapp.com',
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || 'crepes-and-coffee',
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || 'crepes-and-coffee.appspot.com',
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || 'crepes-ad923.firebaseapp.com',
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || 'crepes-ad923',
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || 'crepes-ad923.appspot.com',
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || '000000000000',
   appId: process.env.REACT_APP_FIREBASE_APP_ID || '1:000000000000:web:0000000000000000000000'
 };

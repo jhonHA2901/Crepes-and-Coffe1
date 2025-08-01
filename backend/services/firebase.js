@@ -1,29 +1,28 @@
 const admin = require('firebase-admin');
 require('dotenv').config();
 
-// Configuración de Firebase Admin - Deshabilitado temporalmente para desarrollo
-/*
+// Configuración de Firebase Admin
 const serviceAccount = {
   type: "service_account",
   project_id: process.env.FIREBASE_PROJECT_ID,
-  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID || "544937231427e545456b047644f5f5693c3f1987",
   private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
   client_email: process.env.FIREBASE_CLIENT_EMAIL,
-  client_id: process.env.FIREBASE_CLIENT_ID,
+  client_id: process.env.FIREBASE_CLIENT_ID || "115319780408067939529",
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${process.env.FIREBASE_CLIENT_EMAIL}`
 };
 
-// Inicializar Firebase Admin
-if (!admin.apps.length) {
+// Inicializar Firebase Admin en producción
+if (process.env.NODE_ENV === 'production' && !admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     projectId: process.env.FIREBASE_PROJECT_ID
   });
+  console.log('Firebase Admin inicializado en modo producción');
 }
-*/
 
 // Mock de Firebase Admin para desarrollo
 const mockAdmin = {
