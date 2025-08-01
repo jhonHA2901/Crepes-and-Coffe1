@@ -38,6 +38,32 @@ El archivo `.env.railway` incluye la configuración necesaria para usar la varia
 MYSQL_URL=${{ MYSQL.MYSQL_URL }}
 ```
 
+## Gestión de la base de datos en Railway
+
+### Acceso a la interfaz de MySQL
+
+Para gestionar tu base de datos MySQL en Railway:
+
+1. Ve al panel de control de Railway
+2. Selecciona el servicio MySQL de tu proyecto
+3. Haz clic en la pestaña "Data" para acceder a la interfaz de gestión
+
+### Crear tablas en MySQL
+
+Puedes crear tablas directamente desde la interfaz de Railway:
+
+1. En la pestaña "Data" del servicio MySQL, haz clic en "Create table"
+2. Ingresa el nombre de la tabla en el campo "table name" (por ejemplo, "my-table")
+3. Define las columnas de la tabla:
+   - **column name**: Nombre de la columna (por ejemplo, "id")
+   - **type**: Tipo de datos (por ejemplo, "serial" para auto-incremento)
+   - **default**: Valor por defecto (opcional)
+   - **constraints**: Restricciones como "Primary Key"
+4. Haz clic en "Add column" para agregar más columnas si es necesario
+5. Finalmente, haz clic en "Create" para crear la tabla
+
+![Creación de tablas en MySQL Railway](./imagenes/mysql-railway-create-table.png)
+
 ## Solución de problemas
 
 Si encuentras problemas con la conexión a MySQL:
