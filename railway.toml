@@ -6,7 +6,7 @@
   startCommand = "cd backend && npm run railway"
   healthcheckPath = "/health"
   healthcheckTimeout = 300
-  restartPolicyType = "on-failure"
+  restartPolicyType = "NEVER"
   restartPolicyMaxRetries = 10
 
 [[services]]
